@@ -504,11 +504,13 @@ static const struct lws_protocols protocols_dummy[] = {
 	/* first protocol must always be HTTP handler */
 
 	{
-		"http-only",		/* name */
-		lws_callback_http_dummy,		/* callback */
-		0,	/* per_session_data_size */
-		0,			/* max frame size / rx buffer */
-		0, NULL, 0
+		"http-only",			/* name */
+		lws_callback_http_dummy,	/* callback */
+		0,				/* per_session_data_size */
+		0,				/* rx_buffer_size */
+		0,				/* id */
+		NULL,				/* user */
+		0				/* tx_packet_size */
 	},
 	/*
 	 * the other protocols are provided by lws plugins
@@ -559,9 +561,9 @@ lws_create_vhost(struct lws_context *context,
 		vh->name = info->vhost_name;
 
 	vh->error_document_404 = info->error_document_404;
-	if (info->error_document_404 &&
-	    info->error_document_404[0] == '/')
-		vh->error_document_404 = info->error_document_404 + 1;
+//	if (info->error_document_404 &&
+//	    info->error_document_404[0] == '/')
+//		vh->error_document_404 = info->error_document_404 + 1;
 
 	if (info->options & LWS_SERVER_OPTION_ONLY_RAW)
 		lwsl_info("%s set to only support RAW\n", vh->name);

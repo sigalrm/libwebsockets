@@ -245,7 +245,7 @@ lws_tls_client_connect(struct lws *wsi)
 		memcpy(a, (const char *)prot, len);
 		a[len] = '\0';
 
-		lws_role_call_alpn_negotiated(wsi, (const char *)prot);
+		lws_role_call_alpn_negotiated(wsi, (const char *)a);
 #endif
 		lwsl_info("client connect OK\n");
 		return LWS_SSL_CAPABLE_DONE;
